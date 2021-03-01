@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="ui.css">
+    <title>그림판</title>
+</head>
+    
+<body>
+    <canvas id="canvas" width="600" height="600"></canvas>
+    
+    <div class="menus">
+        <ul class="pen_eraser" data-role="pen_eraser">
+            <li id="pencil"><a href="#"><i class="fa fa-pencil"></i></a><li>
+            <li id="eraser"><a href="#" id="eraser" onclick="Erase()"><i class="fa fa-eraser"></i></a></li>
+            <li><a href="#" ><i class="fa fa-undo"></i></a></li>
+            <li><a href="#" onclick="EraseAll()" name="erase"><i class="fa fa-trash"></i></a></li>
+        </ul>
+
+        <div class="pen_width_controller">
+            <ul class="pen_width">
+                <li><a href="#" id="minusBtn"><i class="fa fa-minus"></i></a></li>
+                <span id="penWidth">10</span>
+                <li><a href="#" id="plusBtn"><i class="fa fa-plus"></i></a></li>
+            </ul>
+        </div>
+
+        <ul class="pen_color">
+            <li id="black"><a href="#"><i class="fa fa-circle" style="color:black"></i></a></li>
+            <li id="red"><a href="#"><i class="fa fa-circle" style="color:red" ></i></a></li>
+            <li id="orange"><a href="#"><i class="fa fa-circle" style="color:orange" ></i></a></li>
+            <li id="yellow"><a href="#"><i class="fa fa-circle" style="color:yellow"></i></a></li>
+            <li id="yellowgreen"><a href="#"><i class="fa fa-circle" style="color:yellowgreen"></i></a></li>
+            <li id="skyblue"><a href="#"><i class="fa fa-circle" style="color:skyblue" ></i></a></li>
+            <li id="violet"><a href="#"><i class="fa fa-circle" style="color:violet"></i></a></li>
+            <li id="pink"><a href="#"><i class="fa fa-circle" style="color:pink" ></i></a></li>
+        
+        </ul>
+    </div>
+    <script type="text/javascript" src="./js/jquery-3.2.1.min.js"></script>
+    <script src="./js/canvas.js"></script>
+</body>
+    
+</html>
