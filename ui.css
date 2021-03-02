@@ -27,9 +27,18 @@ ul li{
     border:3px solid darkorange;
 }
 
-.pen_width{
+.eraser_width a:hover{
+    color:skyblue;
+}
+
+.eraser_width li.on a{
+    color:skyblue;
+}
+.pen_width, .eraser_width{
     display:inline;
 }
+
+
 
 .pen_width li, .pen_width span{
     display:inline;

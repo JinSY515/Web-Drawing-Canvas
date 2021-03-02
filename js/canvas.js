@@ -1,6 +1,7 @@
 $(document).ready(function(){
     $(".pen_eraser #pencil").addClass("on");
     $(".pen_color #black").addClass("on");
+    $(".eraser_width #5").addClass("on");
     $(".pen_eraser li").click(function(){
         var id=$(this).attr("data-role");
         $(".pen_eraser li").removeClass("on");
@@ -12,10 +13,15 @@ $(document).ready(function(){
         var id=$(this).attr("data-role");
         $(".pen_color li").removeClass("on");
         $(this).addClass("on");
-        chooseColor();
+        
     });
 
-
+    $(".eraser_width li").click(function(){
+        var id=$(this).attr("data-role");
+        $(".eraser_width li").removeClass("on");
+        $(this).addClass("on");
+        chooseEraser();
+    });
 
 })
 
@@ -23,6 +29,7 @@ $(document).ready(function(){
 var pos={
     drawable:false,
     pen_erase:true,
+    opacity:1,
     x:-1,
     y:-1
 };
@@ -39,19 +46,60 @@ window.onload=function(){
 
     
 }
+
+/*색 선택*/
 function chooseColor(){
     var color=$(".pen_color li.on").attr("id");
     context.strokeStyle=color;
+    context.strokeStyle=hexToRgb(context.strokeStyle);
 }
+ 
+/*hex값으로 받아온 걸 rgba형으로 받기*/
+function hexToRgb( hex_num ){ 
+
+    var hex = hex_num.replace( "#", "" ); 
+    var value = hex.match( /[a-f\d]/gi );  
+    if ( value.length == 3 ) hex = value[0] + value[0] + value[1] + value[1] + value[2] + value[2]; 
+
+
+    value = hex.match( /[a-f\d]{2}/gi ); 
+
+    var r = parseInt( value[0], 16 ); 
+    var g = parseInt( value[1], 16 ); 
+    var b = parseInt( value[2], 16 ); 
+
+    var rgb = "rgba(" + r + ", " + g + ", " + b +", " + pos.opacity + ")"; 
+
+    return rgb; 
+} 
+
+/*현재 그리기 상태(펜, 지우기, 형광펜)*/
 function chooseState(){
     var state=$(".pen_eraser li.on").attr("id");
-    if(state=="pencil") pos.pen_erase=true;
-    else if(state="eraser") pos.pen_erase=false;
+    if(state=="pencil"){
+        pos.pen_erase=true;
+        pos.opacity=1;
+    } 
+    else if(state=="eraser") {
+        pos.pen_erase=false;
+        pos.opacity=1;
+    }
+    else if(state=="highlighter"){
+        pos.pen_erase=true;
+        pos.opacity=0.01;
+    }
 }
 
+/*지우개 두께 선택*/
+function chooseEraser(){
+    erase_rad=$(".eraser_width li.on").attr("id");
+}
+
+var erase_rad=5;
 var penWidth=document.getElementById("penWidth");
 var thick=10;
 
+/*펜 두께 선택*/
 plusBtn.onclick=function(){
     if(thick>=100) penWidth.innerHTML=100;
     else{
@@ -69,6 +117,7 @@ minusBtn.onclick=function(){
     }
     
 }
+
 
 function listener(event){
     switch(event.type){
@@ -98,12 +147,14 @@ function Initialize(event){
 }
 
 function draw(event){
+    chooseColor();
     var coors=getPosition(event);
     context.lineTo(coors.X,coors.Y);
     pos.x=coors.X;
     pos.y=coors.Y;
     context.stroke();
 }
+
 
 function Finish(){
     pos.drawable=false;
@@ -133,6 +184,18 @@ function Circle(context,x,y,radius) {
 }
 function Erase(event){
     var coors=getPosition(event);
-    Circle(context,coors.X,coors.Y,10);
+    Circle(context,coors.X,coors.Y,erase_rad);
 
 }
+
+
+/*저장하기*/
+save.onclick=function(){
+    var saveCanvas=document.getElementById('canvas');
+    var saveCanvasValue=canvas.toDataURL();  //base64로 변환
+    console.log(saveCanvasValue);
+
+
+}
+
+/*뒤로가기*/

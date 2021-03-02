@@ -6,6 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.1/css/all.css" integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf" crossorigin="anonymous">
     <link rel="stylesheet" href="ui.css">
     <title>그림판</title>
 </head>
@@ -15,10 +16,12 @@
     
     <div class="menus">
         <ul class="pen_eraser" data-role="pen_eraser">
-            <li id="pencil"><a href="#"><i class="fa fa-pencil"></i></a><li>
+            <li id="pencil"><a href="#"><i class="fas fa-pen"></i></a><li>
             <li id="eraser"><a href="#" id="eraser" onclick="Erase()"><i class="fa fa-eraser"></i></a></li>
-            <li><a href="#" ><i class="fa fa-undo"></i></a></li>
-            <li><a href="#" onclick="EraseAll()" name="erase"><i class="fa fa-trash"></i></a></li>
+            <li id="highlighter"><a href="#" id="highlighter"><i class="fas fa-highlighter"></i></a></li>
+            <li id="undo"><a href="#" ><i class="fa fa-undo"></i></a></li>
+            <li><a href="#" id="save"><i class="fa fa-save"></i></a></li>
+            <li id="trash"><a href="#" onclick="EraseAll()" name="erase"><i class="fa fa-trash"></i></a></li>
         </ul>
 
         <div class="pen_width_controller">
@@ -26,6 +29,14 @@
                 <li><a href="#" id="minusBtn"><i class="fa fa-minus"></i></a></li>
                 <span id="penWidth">10</span>
                 <li><a href="#" id="plusBtn"><i class="fa fa-plus"></i></a></li>
+            </ul>
+
+            <ul class="eraser_width">
+                <li id="5"><a href="#"><i class="fa fa-circle" style="font-size:5px"></i></a></li>
+                <li id="12"><a href="#"><i class="fa fa-circle" style="font-size:12px"></i></a></li>
+                <li id="15"><a href="#"><i class="fa fa-circle" style="font-size:15px"></i></a></li>
+                <li id="20"><a href="#"><i class="fa fa-circle" style="font-size:20px"></i></a></li>
+                <li id="30"><a href="#"><i class="fa fa-circle" style="font-size:30px"></i></a></li>
             </ul>
         </div>
 
